@@ -2,60 +2,73 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="https://ssl.gstatic.com/classroom/favicon.png">
     <title>Meus Arquivos - Google Drive</title>
     <style>
-        /* Estilo ultra econômico */
         body { background: #ffffff; color: #3c4043; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
         .lista { max-width: 800px; margin: 0 auto; border-collapse: collapse; width: 100%; }
-        .item { border-bottom: 1px solid #e0e0e0; padding: 12px; cursor: pointer; display: flex; align-items: center; }
+        .item { border-bottom: 1px solid #e0e0e0; padding: 15px; cursor: pointer; display: flex; align-items: center; text-decoration: none; color: inherit; }
         .item:hover { background: #f5f5f5; }
-        .icon { margin-right: 15px; color: #5f6368; font-weight: bold; }
+        .icon { margin-right: 15px; font-size: 20px; }
         
         /* Janela do Jogo */
         #game-box { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
         iframe { width: 100%; height: 100%; border: none; }
-        .btn-pânico { position: absolute; top: 5px; right: 5px; padding: 5px 10px; background: #eee; border: 1px solid #ccc; cursor: pointer; opacity: 0.5; }
-        .btn-pânico:hover { opacity: 1; }
+        .btn-sair { position: absolute; top: 10px; right: 10px; padding: 8px 15px; background: #fff; border: 1px solid #ccc; cursor: pointer; z-index: 10000; border-radius: 4px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <h2 style="font-weight: normal; color: #5f6368;">Meu Drive > Aulas > 2026</h2>
+    <h2 style="font-weight: normal; color: #5f6368; display: flex; align-items: center;">
+        <img src="https://ssl.gstatic.com/classroom/favicon.png" width="20" style="margin-right: 10px;">
+        Meu Drive > Documentos > Aulas_2026
+    </h2>
     
     <div class="lista">
-        <div class="item" onclick="launch('https://images-opensocial.googleusercontent.com/gadgets/proxy?container=focus&url=https://3kh0.github.io/projects/subway-surfers/index.html')">
+        <div class="item" onclick="abrir('https://it-is-it.github.io/subway-surfer/')">
             <span class="icon">📄</span> Atividade_Fisica_Cinetica.pdf
         </div>
         
-        <div class="item" onclick="launch('https://images-opensocial.googleusercontent.com/gadgets/proxy?container=focus&url=https://3kh0.github.io/projects/retro-bowl/index.html')">
+        <div class="item" onclick="abrir('https://it-is-it.github.io/retro-bowl/')">
             <span class="icon">📄</span> Exercicios_Matematica_Angulos.pdf
         </div>
 
-        <div class="item" onclick="launch('https://images-opensocial.googleusercontent.com/gadgets/proxy?container=focus&url=https://3kh0.github.io/projects/ovo/index.html')">
+        <div class="item" onclick="abrir('https://it-is-it.github.io/ovo/')">
             <span class="icon">📄</span> Aula_Biologia_Celular.pdf
         </div>
-        
-        <div class="item" onclick="launch('https://images-opensocial.googleusercontent.com/gadgets/proxy?container=focus&url=https://3kh0.github.io/projects/slope/index.html')">
+
+        <div class="item" onclick="abrir('https://it-is-it.github.io/slope/')">
             <span class="icon">📄</span> Pesquisa_Gravidade_3D.pdf
         </div>
     </div>
 
     <div id="game-box">
-        <button class="btn-pânico" onclick="quit()">FECHAR ARQUIVO</button>
+        <button class="btn-sair" onclick="fechar()">FECHAR ARQUIVO</button>
         <iframe id="game-frame" src=""></iframe>
     </div>
 
     <script>
-        function launch(url) {
-            document.getElementById('game-frame').src = url;
-            document.getElementById('game-box').style.display = 'block';
+        function abrir(url) {
+            const frame = document.getElementById('game-frame');
+            const box = document.getElementById('game-box');
+            // Primeiro limpamos o frame para evitar lixo de memória
+            frame.src = ""; 
+            box.style.display = 'block';
+            // Carregamos o link novo
+            setTimeout(() => {
+                frame.src = url;
+            }, 100);
         }
-        function quit() {
+
+        function fechar() {
             document.getElementById('game-box').style.display = 'none';
             document.getElementById('game-frame').src = '';
         }
-        // Atalho de emergência: tecla P
-        window.onkeydown = (e) => { if(e.key.toLowerCase() === 'p') window.location.replace('https://drive.google.com'); };
+
+        // Tecla de Pânico (P)
+        window.onkeydown = (e) => { 
+            if(e.key.toLowerCase() === 'p') window.location.replace('https://drive.google.com'); 
+        };
     </script>
 </body>
 </html>
