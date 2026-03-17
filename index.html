@@ -2,154 +2,80 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="https://ssl.gstatic.com/classroom/favicon.png">
-    <title>Ambiente Virtual de Aprendizagem | Medici 2026</title>
-    
+    <title>Portal de Pesquisa Avançada</title>
     <style>
-        :root {
-            --bg: #0a0a0c;
-            --card: #161b22;
-            --accent: #238636;
-            --text: #c9d1d9;
+        /* DESIGN LIMPO E RÁPIDO */
+        body { background: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; margin: 0; text-align: center; }
+        header { padding: 15px; background: #161b22; border-bottom: 1px solid #30363d; font-weight: bold; }
+        
+        .grade { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 40px; }
+        
+        .card { 
+            width: 220px; padding: 25px; background: #21262d; 
+            border: 1px solid #30363d; border-radius: 12px; cursor: pointer;
+            transition: 0.2s;
         }
+        .card:hover { border-color: #58a6ff; background: #30363d; transform: scale(1.05); }
+        .card h3 { margin: 0; color: #58a6ff; }
 
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            overflow-x: hidden;
-        }
-
-        header {
-            background: #010409;
-            padding: 15px 5%;
-            border-bottom: 1px solid #30363d;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .status-dot {
-            height: 10px; width: 10px;
-            background-color: #238636;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 5px;
-        }
-
-        .grade {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 40px 5%;
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .card:hover {
-            border-color: #8b949e;
-            transform: translateY(-3px);
-            background: #1c2128;
-        }
-
-        .card h3 { margin: 0; color: #58a6ff; font-size: 18px; }
-        .card p { font-size: 13px; color: #8b949e; margin: 10px 0 0; }
-
-        #viewport {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: #000;
-            z-index: 9999;
-        }
-
+        /* AREA DO JOGO - OTIMIZADA */
+        #viewport { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1000; }
         iframe { width: 100%; height: 100%; border: none; }
-
-        .controls {
-            position: absolute;
-            top: 15px; right: 20px;
-            z-index: 10000;
-            display: flex; gap: 10px;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            color: white;
-        }
-        .btn-exit { background: #da3633; }
-        .btn-panic { background: #238636; }
+        
+        .btn-sair { position: absolute; top: 10px; right: 10px; background: #da3633; color: white; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; z-index: 1001; border: none; }
+        .btn-sair:hover { background: #f85149; }
     </style>
 </head>
 <body>
 
-<header>
-    <div>
-        <span class="status-dot"></span>
-        <span style="font-weight: bold;">PORTAL DE PESQUISA V.4.2</span>
-    </div>
-    <div style="font-size: 12px; opacity: 0.7;">SÃO VICENTE - SP</div>
-</header>
+<header>SISTEMA DE ANÁLISE DE DADOS - VICENTE/MEDICI</header>
 
 <div class="grade">
-    <div class="card" onclick="run('https://3kh0.github.io/projects/subway-surfers/index.html')">
-        <h3>LAB-01: Cinética</h3>
-        <p>Análise de vetores e deslocamento rápido.</p>
+    <div class="card" onclick="play('https://webgl.poki.com/games/subway-surfers/index.html')">
+        <h3>LAB 01: Cinética</h3>
+        <p>Subway Surfers (Versão Poki)</p>
     </div>
 
-    <div class="card" onclick="run('https://3kh0.github.io/projects/retro-bowl/index.html')">
-        <h3>LAB-02: Balística</h3>
-        <p>Cálculo de parábolas e força G.</p>
+    <div class="card" onclick="play('https://ubg77.github.io/edit/retro-bowl/')">
+        <h3>LAB 02: Balística</h3>
+        <p>Retro Bowl (Mirror)</p>
     </div>
 
-    <div class="card" onclick="run('https://3kh0.github.io/projects/eaglercraft/index.html')">
-        <h3>LAB-03: Geologia</h3>
-        <p>Simulação de extração mineral.</p>
+    <div class="card" onclick="play('https://geometry-dash.io/game/geometry-dash-lite/')">
+        <h3>LAB 03: Geometria</h3>
+        <p>Geometry Dash (Turbo)</p>
     </div>
 
-    <div class="card" onclick="run('https://3kh0.github.io/projects/1v1-lol/index.html')">
-        <h3>LAB-04: Estruturas</h3>
-        <p>Engenharia civil sob pressão.</p>
+    <div class="card" onclick="play('https://1v1.lol')">
+        <h3>LAB 04: Estrutura</h3>
+        <p>1v1.LOL (Original)</p>
     </div>
 </div>
 
 <div id="viewport">
-    <div class="controls">
-        <button class="btn btn-panic" onclick="location.replace('https://classroom.google.com')">CLASSE</button>
-        <button class="btn btn-exit" onclick="closeGame()">FECHAR [X]</button>
-    </div>
-    <iframe id="game-frame" sandbox="allow-scripts allow-same-origin allow-forms" src=""></iframe>
+    <button class="btn-sair" onclick="stop()">FECHAR [X]</button>
+    <iframe id="game-frame" src=""></iframe>
 </div>
 
 <script>
-    function run(url) {
+    function play(url) {
+        const frame = document.getElementById('game-frame');
         document.getElementById('viewport').style.display = 'block';
-        document.getElementById('game-frame').src = url;
+        // Isso força o navegador a focar apenas no jogo
+        frame.src = url;
+        frame.focus();
     }
 
-    function closeGame() {
+    function stop() {
         document.getElementById('viewport').style.display = 'none';
         document.getElementById('game-frame').src = '';
     }
 
-    window.addEventListener('keydown', (e) => {
-        if (e.key.toLowerCase() === 'p') {
-            window.location.replace("https://classroom.google.com");
-        }
-    });
+    // TECLA P PARA SUMIR TUDO
+    window.onkeydown = (e) => {
+        if(e.key.toLowerCase() === 'p') window.location.replace('https://classroom.google.com');
+    };
 </script>
 
 </body>
