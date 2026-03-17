@@ -6,15 +6,14 @@
     <title>Meus Arquivos - Google Drive</title>
     <style>
         body { background: #ffffff; color: #3c4043; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        .lista { max-width: 800px; margin: 0 auto; border-collapse: collapse; width: 100%; }
-        .item { border-bottom: 1px solid #e0e0e0; padding: 15px; cursor: pointer; display: flex; align-items: center; text-decoration: none; color: inherit; }
-        .item:hover { background: #f5f5f5; }
+        .lista { max-width: 800px; margin: 0 auto; width: 100%; }
+        .item { border-bottom: 1px solid #e0e0e0; padding: 15px; cursor: pointer; display: flex; align-items: center; transition: 0.2s; }
+        .item:hover { background: #f1f3f4; }
         .icon { margin-right: 15px; font-size: 20px; }
         
-        /* Janela do Jogo */
         #game-box { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
         iframe { width: 100%; height: 100%; border: none; }
-        .btn-sair { position: absolute; top: 10px; right: 10px; padding: 8px 15px; background: #fff; border: 1px solid #ccc; cursor: pointer; z-index: 10000; border-radius: 4px; font-weight: bold; }
+        .btn-sair { position: absolute; top: 10px; right: 10px; padding: 8px 15px; background: #fff; border: 1px solid #ccc; cursor: pointer; z-index: 10000; border-radius: 4px; font-family: sans-serif; }
     </style>
 </head>
 <body>
@@ -25,19 +24,19 @@
     </h2>
     
     <div class="lista">
-        <div class="item" onclick="abrir('https://it-is-it.github.io/subway-surfer/')">
+        <div class="item" onclick="abrir('https://poki.com/pt/g/subway-surfers/embed')">
             <span class="icon">📄</span> Atividade_Fisica_Cinetica.pdf
         </div>
         
-        <div class="item" onclick="abrir('https://it-is-it.github.io/retro-bowl/')">
+        <div class="item" onclick="abrir('https://retrobowl.me/game/')">
             <span class="icon">📄</span> Exercicios_Matematica_Angulos.pdf
         </div>
 
-        <div class="item" onclick="abrir('https://it-is-it.github.io/ovo/')">
+        <div class="item" onclick="abrir('https://v6p9d9t4.ssl.hwcdn.net/html/2180556/index.html')">
             <span class="icon">📄</span> Aula_Biologia_Celular.pdf
         </div>
 
-        <div class="item" onclick="abrir('https://it-is-it.github.io/slope/')">
+        <div class="item" onclick="abrir('https://slope-game.github.io/')">
             <span class="icon">📄</span> Pesquisa_Gravidade_3D.pdf
         </div>
     </div>
@@ -51,13 +50,8 @@
         function abrir(url) {
             const frame = document.getElementById('game-frame');
             const box = document.getElementById('game-box');
-            // Primeiro limpamos o frame para evitar lixo de memória
-            frame.src = ""; 
             box.style.display = 'block';
-            // Carregamos o link novo
-            setTimeout(() => {
-                frame.src = url;
-            }, 100);
+            frame.src = url;
         }
 
         function fechar() {
@@ -65,7 +59,6 @@
             document.getElementById('game-frame').src = '';
         }
 
-        // Tecla de Pânico (P)
         window.onkeydown = (e) => { 
             if(e.key.toLowerCase() === 'p') window.location.replace('https://drive.google.com'); 
         };
